@@ -6,5 +6,6 @@
 
 (comment
   ;; The Demo
-  (evm/configuration (crypto/address crypto/demo-wallet) 10)
+  (let [conf (evm/configuration (crypto/address crypto/demo-wallet) 10)
+        op-tracer (evm/console-debug-tracer)])
   )
