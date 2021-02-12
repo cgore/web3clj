@@ -5,5 +5,6 @@
 
 
 (comment
-  (crypto/address crypto/demo-wallet)
+  ;; The Demo
+  (evm/configuration (crypto/address crypto/demo-wallet) 10)
   )
