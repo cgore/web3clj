@@ -1,14 +1,17 @@
 # clj-evm
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure wrapper around web3j-evm.
 
 ## Usage
 
-FIXME
+### web3j-evm
+
+- https://github.com/web3j/web3j-evm
+- https://github.com/web3j/web3j-evmexample
 
 ## License
 
-Copyright © 2021 FIXME
+Copyright © 2021 Christopher Mark Gore, all rights reserved.
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
