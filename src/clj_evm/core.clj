@@ -7,5 +7,7 @@
 (comment
   ;; The Demo
   (let [conf (evm/configuration (crypto/address crypto/demo-wallet) 10)
-        op-tracer (evm/console-debug-tracer)])
+        op-tracer (evm/console-debug-tracer)
+        emb (evm/embedded-web3j-service conf op-tracer)]
+    emb)
   )

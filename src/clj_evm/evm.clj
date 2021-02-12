@@ -1,5 +1,6 @@
 (ns clj-evm.evm
   (:import [java.net URL]
+           [org.hyperledger.besu.ethereum.vm OperationTracer]
            [org.web3j.abi.datatypes Address]
            [org.web3j.evm Configuration ConsoleDebugTracer PassthroughTracer EmbeddedWeb3jService]))
 
@@ -21,3 +22,8 @@
    (ConsoleDebugTracer. meta-file))
   ([meta-file stdin]
    (ConsoleDebugTracer. meta-file stdin)))
+
+(defn embedded-web3j-service
+  "An embedded web3j service allows us to run an EVM and a ledger inside the running JVM."
+  [^Configuration configuration ^OperationTracer operation-tracer]
+  (EmbeddedWeb3jService. configuration operation-tracer))
