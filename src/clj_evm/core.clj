@@ -1,6 +1,9 @@
-(ns clj-evm.core)
+(ns clj-evm.core
+  (:require [clj-evm.abi    :as abi]
+            [clj-evm.crypto :as crypto]
+            [clj-evm.evm    :as evm]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+
+(comment
+  (crypto/address crypto/demo-wallet)
+  )

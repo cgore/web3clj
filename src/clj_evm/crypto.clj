@@ -11,9 +11,5 @@
 (defn address-string [^Credentials credentials]
   (.getAddress credentials))
 
-(defn address [credentials]
+(defn address [^Credentials credentials]
   (-> credentials address-string abi/->address))
-
-(comment
-  (address demo-wallet)
-  )
