@@ -1,4 +1,4 @@
-(ns clj-evm.protocol
+(ns web3clj.protocol
   (:import [java.util.concurrent ScheduledExecutorService]
            [org.web3j.protocol Web3j Web3jService]
            [org.web3j.protocol.core.methods.response TransactionReceipt]))

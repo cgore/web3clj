@@ -1,4 +1,4 @@
-(ns clj-evm.abi
+(ns web3clj.abi
   (:import [org.web3j.abi.datatypes Address]))
 
 (defn ->address [^String string]

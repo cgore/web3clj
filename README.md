@@ -1,11 +1,12 @@
-# clj-evm
+# web3clj
 
-A Clojure wrapper around web3j-evm.
+A Clojure wrapper around web3j.
 
 ## Usage
 
-### web3j-evm
+### web3j
 
+- https://github.com/web3j/web3j
 - https://github.com/web3j/web3j-evm
 - https://github.com/web3j/web3j-evmexample
 

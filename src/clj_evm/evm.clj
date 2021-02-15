@@ -1,4 +1,4 @@
-(ns clj-evm.evm
+(ns web3clj.evm
   (:import [java.net URL]
            [org.hyperledger.besu.ethereum.vm OperationTracer]
            [org.web3j.abi.datatypes Address]
