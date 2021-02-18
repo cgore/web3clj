@@ -17,6 +17,9 @@
   (cond (string? number) (BigDecimal. number)
         (number? number) (BigDecimal. number)))
 
+(defn amount->unit  [amount] (-> amount keys first))
+(defn amount->value [amount] (-> amount vals first))
+
 (defn wei    [amount] {WEI    (->big-decimal amount)})
 (defn kwei   [amount] {KWEI   (->big-decimal amount)})
 (defn mwei   [amount] {MWEI   (->big-decimal amount)})
