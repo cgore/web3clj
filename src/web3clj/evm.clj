@@ -15,13 +15,19 @@
 (defn console-debug-tracer
   "Make a new console debug tracer.
   The contract meta file will default to \"build/resources/main/solidity\".
-  The stdin will default to the real stdin."
+  The stdin will default to the real stdin, which is probably not what you want in a repl."
   ([]
    (ConsoleDebugTracer.))
   ([meta-file]
    (ConsoleDebugTracer. meta-file))
   ([meta-file stdin]
    (ConsoleDebugTracer. meta-file stdin)))
+
+(defn passthrough-tracer
+  "Make a new passthrough tracer.
+  If you don't want console debugging, this is what you want."
+  []
+  (PassthroughTracer.))
 
 (defn embedded-web3j-service
   "An embedded web3j service allows us to run an EVM and a ledger inside the running JVM."
