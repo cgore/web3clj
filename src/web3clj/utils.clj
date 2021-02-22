@@ -13,27 +13,23 @@
 (def METHER Convert$Unit/METHER)
 (def GETHER Convert$Unit/GETHER)
 
-(defn ->big-decimal [number]
-  (cond (string? number) (BigDecimal. number)
-        (number? number) (BigDecimal. number)))
-
 (defn amount->unit  [amount] (-> amount keys first))
 (defn amount->value [amount] (-> amount vals first))
 
-(defn wei    [amount] {WEI    (->big-decimal amount)})
-(defn kwei   [amount] {KWEI   (->big-decimal amount)})
-(defn mwei   [amount] {MWEI   (->big-decimal amount)})
-(defn gwei   [amount] {GWEI   (->big-decimal amount)})
-(defn szabo  [amount] {SZABO  (->big-decimal amount)})
-(defn finney [amount] {FINNEY (->big-decimal amount)})
-(defn ether  [amount] {ETHER  (->big-decimal amount)})
-(defn kether [amount] {KETHER (->big-decimal amount)})
-(defn mether [amount] {METHER (->big-decimal amount)})
-(defn gether [amount] {GETHER (->big-decimal amount)})
+(defn wei    [amount] {WEI    (bigdec amount)})
+(defn kwei   [amount] {KWEI   (bigdec amount)})
+(defn mwei   [amount] {MWEI   (bigdec amount)})
+(defn gwei   [amount] {GWEI   (bigdec amount)})
+(defn szabo  [amount] {SZABO  (bigdec amount)})
+(defn finney [amount] {FINNEY (bigdec amount)})
+(defn ether  [amount] {ETHER  (bigdec amount)})
+(defn kether [amount] {KETHER (bigdec amount)})
+(defn mether [amount] {METHER (bigdec amount)})
+(defn gether [amount] {GETHER (bigdec amount)})
 
 (defn ->wei
   [number ^Convert$Unit unit]
-  (Convert/toWei (->big-decimal number) unit))
+  (Convert/toWei (bigdec number) unit))
 
 (defn kwei->wei   [kwei-amount]   (->wei kwei-amount   KWEI))
 (defn mwei->wei   [mwei-amount]   (->wei mwei-amount   MWEI))
@@ -47,7 +43,7 @@
 
 (defn <-wei
   [number ^Convert$Unit unit]
-  (Convert/fromWei (->big-decimal number) unit))
+  (Convert/fromWei (bigdec number) unit))
 
 (defn wei->kwei   [kwei-amount]   (<-wei kwei-amount   KWEI))
 (defn wei->mwei   [mwei-amount]   (<-wei mwei-amount   MWEI))
