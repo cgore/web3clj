@@ -1,5 +1,5 @@
 (ns web3clj.crypto
-  (:require [web3clj.abi :as abi])
+  (:require [web3clj.abi.datatypes :refer [->address]])
   (:import [org.web3j.crypto Credentials WalletUtils]))
 
 (defn load-credentials [^String password ^String source-file]
@@ -12,4 +12,4 @@
   (.getAddress credentials))
 
 (defn address [^Credentials credentials]
-  (-> credentials address-string abi/->address))
+  (-> credentials address-string ->address))
