@@ -1,14 +1,20 @@
 # web3clj
 
-A Clojure wrapper around web3j.
+A Clojure wrapper around the Web3j technologies.
 
 ## Usage
 
-### web3j
+### Key Web3j Libraries
 
-- https://github.com/web3j/web3j
+- https://github.com/web3j/web3j - the core web3j library.
+- https://github.com/web3j/web3j-maven-plugin - creates java classes based on
+  the solidity contract files.
 - https://github.com/web3j/web3j-evm
-- https://github.com/web3j/web3j-evmexample
+- https://github.com/web3j/web3j-unit
+- https://github.com/web3j/web3j-quorum
+- https://github.com/web3j/svm
+- https://github.com/web3j/web3j-evmexample - babby's first web3j evm,
+  duplicated here in the `web3clj.demo.web3j-evm-example` namespace.
 
 ## License
 
