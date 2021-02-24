@@ -17,6 +17,20 @@
     (is (= (biginteger 15)
            (datatypes/->big-integer "15")))))
 
+(deftest ->non-negative-big-integer
+  (testing "positives are accepted and translated"
+    (is (= (biginteger 12)
+           (datatypes/->non-negative-big-integer 12)
+           (datatypes/->non-negative-big-integer (bigint 12))
+           (datatypes/->non-negative-big-integer (biginteger 12))
+           (datatypes/->non-negative-big-integer "12"))))
+  (testing "negatives are rejected and nil is returned"
+    (is (= nil
+           (datatypes/->non-negative-big-integer -12)
+           (datatypes/->non-negative-big-integer (bigint -12))
+           (datatypes/->non-negative-big-integer (biginteger -12))
+           (datatypes/->non-negative-big-integer "-12")))))
+
 (deftest ->address
   (testing "works with big integers"
     (is (= (biginteger 13)

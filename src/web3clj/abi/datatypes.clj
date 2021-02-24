@@ -9,6 +9,12 @@
         (int? n)                (biginteger n)
         (string? n)             (biginteger n)))
 
+(defn ->non-negative-big-integer [n]
+  (let [v (->big-integer n)]
+    (when (and (not (nil? v))
+               (not (neg? v)))
+      v)))
+
 (defn ->address
   "Creates a new address instance.
   Value can be a Uint, BigInteger, or String (hex value).
