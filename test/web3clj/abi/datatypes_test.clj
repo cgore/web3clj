@@ -3,10 +3,18 @@
             [clojure.test :refer :all])
   (:import [org.web3j.abi.datatypes Address Uint]))
 
+(deftest ->address
+  (testing "works with big integers"
+    (is (= (biginteger 13)
+           (.getValue (datatypes/address->uint (datatypes/->address (biginteger 13)))))))
+  (testing "works with normal integers"
+    (is (= (biginteger 14)
+           (.getValue (datatypes/address->uint (datatypes/->address 14)))))))
+
 (deftest address->uint
   (testing "round trip"
-    (let [ui (Uint. (biginteger 13))]
-      (is (= ui (-> ui datatypes/->address datatypes/address->uint))))))
+    (is (= (biginteger 15)
+           (.getValue (datatypes/address->uint (datatypes/->address (biginteger 15))))))))
 
 (deftest address->string
   (testing "round trip"
