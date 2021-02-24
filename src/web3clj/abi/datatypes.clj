@@ -12,3 +12,6 @@
 
 (defn address->uint [^Address address]
   (.toUint address))
+
+(defn address->string [^Address address]
+  (.toString address))
