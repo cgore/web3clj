@@ -3,6 +3,12 @@
            [java.math BigInteger]
            [org.web3j.abi.datatypes Address Uint]))
 
+(defn ->big-integer [n]
+  (cond (= BigInteger (type n))  n
+        (= BigInt (type n))     (biginteger n)
+        (int? n)                (biginteger n)
+        (string? n)             (biginteger n)))
+
 (defn ->address
   "Creates a new address instance.
   Value can be a Uint, BigInteger, or String (hex value).

@@ -3,6 +3,20 @@
             [clojure.test :refer :all])
   (:import [org.web3j.abi.datatypes Address Uint]))
 
+(deftest ->big-integer
+  (testing "passes through an existing BigInteger"
+    (let [i (biginteger 12)]
+      (is (= i (datatypes/->big-integer i)))))
+  (testing "works with BigInt"
+    (is (= (biginteger 13)
+           (datatypes/->big-integer (bigint 13)))))
+  (testing "works with normal ints"
+    (is (= (biginteger 14)
+           (datatypes/->big-integer 14))))
+  (testing "works with strings"
+    (is (= (biginteger 15)
+           (datatypes/->big-integer "15")))))
+
 (deftest ->address
   (testing "works with big integers"
     (is (= (biginteger 13)
