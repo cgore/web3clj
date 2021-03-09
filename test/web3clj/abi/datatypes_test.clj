@@ -73,4 +73,13 @@
                                    (Address. (datatypes/->big-integer 124))))))
     (testing "both addresses and matching ⇒ yes"
       (is (datatypes/address= (Address. (datatypes/->big-integer 123))
-                              (Address. (datatypes/->big-integer 123)))))))
+                              (Address. (datatypes/->big-integer 123))))))
+  (testing "multiple addresses"
+    (let [a (Address. (datatypes/->big-integer 123))
+          b (Address. (datatypes/->big-integer 456))]
+      (is (datatypes/address= a a a))
+      (is (datatypes/address= a a a a))
+      (is (datatypes/address= a a a a a))
+      (is (datatypes/address= a a a a a a))
+      (is (datatypes/address= a a a a a a a))
+      (is (not (datatypes/address= a a a a a a a b))))))

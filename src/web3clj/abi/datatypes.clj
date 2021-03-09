@@ -44,4 +44,7 @@
   ([address other]
    (and (address? address)
         (address? other)
-        (.equals ^Address address ^Address other))))
+        (.equals ^Address address ^Address other)))
+  ([address other & others]
+   (and (address= address other)
+        (apply address= address others))))
