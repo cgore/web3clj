@@ -8,3 +8,13 @@
   Cf. https://github.com/ethereum/wiki/wiki/JSON-RPC#hex-value-encoding"
   [value]
   (Numeric/encodeQuantity (->big-integer value)))
+
+(defn decode-quantity
+  "Decodes a hex string."
+  [^String string]
+  (Numeric/decodeQuantity string))
+
+(defn clean-hex-prefix
+  "Removes the hex prefix 0x from a string, if it's there."
+  [^String string]
+  (Numeric/cleanHexPrefix string))
