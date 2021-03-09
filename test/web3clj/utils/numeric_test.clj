@@ -39,3 +39,13 @@
     (is (= "0x123" (numeric/prepend-hex-prefix "123"))))
   (testing "doesn't mangle it if it's not there"
     (is (= "0x123" (numeric/prepend-hex-prefix "0x123")))))
+
+(deftest contains-hex-prefix?
+  (testing "false for nil"
+    (is (not (numeric/contains-hex-prefix? nil))))
+  (testing "false for empty string"
+    (is (not (numeric/contains-hex-prefix? ""))))
+  (testing "false for missing the prefix"
+    (is (not (numeric/contains-hex-prefix? "123"))))
+  (testing "true case"
+    (is (numeric/contains-hex-prefix? "0x123"))))

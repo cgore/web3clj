@@ -23,3 +23,10 @@
   "Adds the hex prefix \"0x\" to a hex string, if it's missing."
   [^String string]
   (Numeric/prependHexPrefix string))
+
+(defn contains-hex-prefix?
+  "Returns true if the hex string contains the \"0x\" hex prefix."
+  [string]
+  (and string
+       (string? string)
+       (Numeric/containsHexPrefix string)))
