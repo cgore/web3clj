@@ -32,13 +32,18 @@
    (Address. bit-size (cond (not (nil? (->big-integer value)))  (->big-integer value)
                             (= Uint (type value))               (.getValue value)))))
 
-(defn address->uint [^Address address]
+(defn address->uint
+  "Converts the address to a Uint."
+  [^Address address]
   (.toUint address))
 
-(defn address->string [^Address address]
+(defn address->string
+  "Converts the address to a zero-padded hex string."
+  [^Address address]
   (.toString address))
 
 (defn address=
+  "Returns true if one or more addresses are all equal to each other."
   ([address]
    (address? address))
   ([address other]
