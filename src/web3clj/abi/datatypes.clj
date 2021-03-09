@@ -3,13 +3,17 @@
            [java.math BigInteger]
            [org.web3j.abi.datatypes Address Uint]))
 
-(defn ->big-integer [n]
+(defn ->big-integer
+  "Converts integers of various types to BigInteger."
+  [n]
   (cond (= BigInteger (type n))  n
         (= BigInt (type n))     (biginteger n)
         (int? n)                (biginteger n)
         (string? n)             (biginteger n)))
 
-(defn ->non-negative-big-integer [n]
+(defn ->non-negative-big-integer
+  "Converts non-negative integers of various types to a Biginteger."
+  [n]
   (let [v (->big-integer n)]
     (when (and (not (nil? v))
                (not (neg? v)))
