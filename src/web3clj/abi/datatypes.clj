@@ -1,23 +1,6 @@
 (ns web3clj.abi.datatypes
-  (:import [clojure.lang BigInt]
-           [java.math BigInteger]
-           [org.web3j.abi.datatypes Address Uint]))
-
-(defn ->big-integer
-  "Converts integers of various types to BigInteger."
-  [n]
-  (cond (= BigInteger (type n))  n
-        (= BigInt (type n))     (biginteger n)
-        (int? n)                (biginteger n)
-        (string? n)             (biginteger n)))
-
-(defn ->non-negative-big-integer
-  "Converts non-negative integers of various types to a Biginteger."
-  [n]
-  (let [v (->big-integer n)]
-    (when (and (not (nil? v))
-               (not (neg? v)))
-      v)))
+  (:require [web3clj.utils.numeric :refer [->big-integer]])
+  (:import [org.web3j.abi.datatypes Address Uint]))
 
 (defn address?
   "Returns true if this is a web3j Address."

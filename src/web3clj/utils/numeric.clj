@@ -1,6 +1,24 @@
 (ns web3clj.utils.numeric
-  (:require [web3clj.abi.datatypes :refer [->big-integer]])
-  (:import [org.web3j.utils Numeric]))
+  (:import [clojure.lang BigInt]
+           [java.math BigInteger]
+           [org.web3j.abi.datatypes Uint]
+           [org.web3j.utils Numeric]))
+
+(defn ->big-integer
+  "Converts integers of various types to BigInteger."
+  [n]
+  (cond (= BigInteger (type n))  n
+        (= BigInt (type n))     (biginteger n)
+        (int? n)                (biginteger n)
+        (string? n)             (biginteger n)))
+
+(defn ->non-negative-big-integer
+  "Converts non-negative integers of various types to a Biginteger."
+  [n]
+  (let [v (->big-integer n)]
+    (when (and (not (nil? v))
+               (not (neg? v)))
+      v)))
 
 (defn encode-quantity
   "Encodes a quantity as a hex string.

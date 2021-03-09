@@ -1,41 +1,14 @@
 (ns web3clj.abi.datatypes-test
   (:require [web3clj.abi.datatypes :as datatypes]
+            [web3clj.utils.numeric :refer [->big-integer]]
             [clojure.test :refer :all])
   (:import [org.web3j.abi.datatypes Address Uint]))
 
-(deftest ->big-integer
-  (testing "passes through an existing BigInteger"
-    (let [i (biginteger 12)]
-      (is (= i (datatypes/->big-integer i)))))
-  (testing "works with BigInt"
-    (is (= (biginteger 13)
-           (datatypes/->big-integer (bigint 13)))))
-  (testing "works with normal ints"
-    (is (= (biginteger 14)
-           (datatypes/->big-integer 14))))
-  (testing "works with strings"
-    (is (= (biginteger 15)
-           (datatypes/->big-integer "15")))))
-
-(deftest ->non-negative-big-integer
-  (testing "positives are accepted and translated"
-    (is (= (biginteger 12)
-           (datatypes/->non-negative-big-integer 12)
-           (datatypes/->non-negative-big-integer (bigint 12))
-           (datatypes/->non-negative-big-integer (biginteger 12))
-           (datatypes/->non-negative-big-integer "12"))))
-  (testing "negatives are rejected and nil is returned"
-    (is (= nil
-           (datatypes/->non-negative-big-integer -12)
-           (datatypes/->non-negative-big-integer (bigint -12))
-           (datatypes/->non-negative-big-integer (biginteger -12))
-           (datatypes/->non-negative-big-integer "-12")))))
-
 (deftest address?
   (testing "returns true for an Address"
-    (is (datatypes/address? (Address. (datatypes/->big-integer 123)))))
+    (is (datatypes/address? (Address. (->big-integer 123)))))
   (testing "returns false for other things"
-    (is (not (datatypes/address? (datatypes/->big-integer 123))))))
+    (is (not (datatypes/address? (->big-integer 123))))))
 
 (deftest ->address
   (testing "works with big integers"
@@ -58,25 +31,25 @@
 (deftest address=
   (testing "single address signature is basically just a check if this is an address"
     (testing "affirmative case"
-      (is (datatypes/address= (Address. (datatypes/->big-integer 123)))))
+      (is (datatypes/address= (Address. (->big-integer 123)))))
     (testing "negative case"
-      (is (not (datatypes/address= (datatypes/->big-integer 123))))))
+      (is (not (datatypes/address= (->big-integer 123))))))
   (testing "two addresses"
     (testing "first not an address ⇒ no"
-      (is (not (datatypes/address= (datatypes/->big-integer 123)
-                                   (Address. (datatypes/->big-integer 123))))))
+      (is (not (datatypes/address= (->big-integer 123)
+                                   (Address. (->big-integer 123))))))
     (testing "second not an address ⇒ no"
-      (is (not (datatypes/address= (Address. (datatypes/->big-integer 123))
-                                   (datatypes/->big-integer 123)))))
+      (is (not (datatypes/address= (Address. (->big-integer 123))
+                                   (->big-integer 123)))))
     (testing "both addresses but not matching ⇒ no"
-      (is (not (datatypes/address= (Address. (datatypes/->big-integer 123))
-                                   (Address. (datatypes/->big-integer 124))))))
+      (is (not (datatypes/address= (Address. (->big-integer 123))
+                                   (Address. (->big-integer 124))))))
     (testing "both addresses and matching ⇒ yes"
-      (is (datatypes/address= (Address. (datatypes/->big-integer 123))
-                              (Address. (datatypes/->big-integer 123))))))
+      (is (datatypes/address= (Address. (->big-integer 123))
+                              (Address. (->big-integer 123))))))
   (testing "multiple addresses"
-    (let [a (Address. (datatypes/->big-integer 123))
-          b (Address. (datatypes/->big-integer 456))]
+    (let [a (Address. (->big-integer 123))
+          b (Address. (->big-integer 456))]
       (is (datatypes/address= a a a))
       (is (datatypes/address= a a a a))
       (is (datatypes/address= a a a a a))
