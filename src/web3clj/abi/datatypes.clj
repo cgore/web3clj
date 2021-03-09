@@ -15,6 +15,11 @@
                (not (neg? v)))
       v)))
 
+(defn address?
+  "Returns true if this is a web3j Address."
+  [address]
+  (= Address (type address)))
+
 (defn ->address
   "Creates a new address instance.
   Value can be a Uint, BigInteger, or String (hex value).

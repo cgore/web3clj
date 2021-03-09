@@ -31,6 +31,12 @@
            (datatypes/->non-negative-big-integer (biginteger -12))
            (datatypes/->non-negative-big-integer "-12")))))
 
+(deftest address?
+  (testing "returns true for an Address"
+    (is (datatypes/address? (Address. (datatypes/->big-integer 123)))))
+  (testing "returns false for other things"
+    (is (not (datatypes/address? (datatypes/->big-integer 123))))))
+
 (deftest ->address
   (testing "works with big integers"
     (is (= (biginteger 13)
