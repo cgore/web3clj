@@ -33,3 +33,9 @@
     (is (= "123" (numeric/clean-hex-prefix "0x123"))))
   (testing "doesn't mangle it if it's not there"
     (is (= "123" (numeric/clean-hex-prefix "123")))))
+
+(deftest prepend-hex-prefix
+  (testing "adds it if it's not there"
+    (is (= "0x123" (numeric/prepend-hex-prefix "123"))))
+  (testing "doesn't mangle it if it's not there"
+    (is (= "0x123" (numeric/prepend-hex-prefix "0x123")))))

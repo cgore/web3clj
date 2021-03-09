@@ -15,6 +15,11 @@
   (Numeric/decodeQuantity string))
 
 (defn clean-hex-prefix
-  "Removes the hex prefix 0x from a string, if it's there."
+  "Removes the hex prefix \"0x\" from a string, if it's there."
   [^String string]
   (Numeric/cleanHexPrefix string))
+
+(defn prepend-hex-prefix
+  "Adds the hex prefix \"0x\" to a hex string, if it's missing."
+  [^String string]
+  (Numeric/prependHexPrefix string))
