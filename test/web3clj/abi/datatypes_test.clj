@@ -54,3 +54,23 @@
   (testing "round trip"
     (let [s "0x000000000000000000000000000000000000000d"]
       (is (= s (-> s datatypes/->address datatypes/address->string))))))
+
+(deftest address=
+  (testing "single address signature is basically just a check if this is an address"
+    (testing "affirmative case"
+      (is (datatypes/address= (Address. (datatypes/->big-integer 123)))))
+    (testing "negative case"
+      (is (not (datatypes/address= (datatypes/->big-integer 123))))))
+  (testing "two addresses"
+    (testing "first not an address ⇒ no"
+      (is (not (datatypes/address= (datatypes/->big-integer 123)
+                                   (Address. (datatypes/->big-integer 123))))))
+    (testing "second not an address ⇒ no"
+      (is (not (datatypes/address= (Address. (datatypes/->big-integer 123))
+                                   (datatypes/->big-integer 123)))))
+    (testing "both addresses but not matching ⇒ no"
+      (is (not (datatypes/address= (Address. (datatypes/->big-integer 123))
+                                   (Address. (datatypes/->big-integer 124))))))
+    (testing "both addresses and matching ⇒ yes"
+      (is (datatypes/address= (Address. (datatypes/->big-integer 123))
+                              (Address. (datatypes/->big-integer 123)))))))

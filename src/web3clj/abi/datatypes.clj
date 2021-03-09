@@ -37,3 +37,11 @@
 
 (defn address->string [^Address address]
   (.toString address))
+
+(defn address=
+  ([address]
+   (address? address))
+  ([address other]
+   (and (address? address)
+        (address? other)
+        (.equals ^Address address ^Address other))))
