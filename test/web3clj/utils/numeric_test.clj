@@ -66,7 +66,10 @@
            (numeric/->non-negative-big-integer -12)
            (numeric/->non-negative-big-integer (bigint -12))
            (numeric/->non-negative-big-integer (biginteger -12))
-           (numeric/->non-negative-big-integer "-12")))))
+           (numeric/->non-negative-big-integer "-12"))))
+  (testing "works with hex strings"
+    (is (= (biginteger 123)
+           (numeric/->non-negative-big-integer "0x7b")))))
 
 (deftest encode-quantity
   (testing "some examples"
