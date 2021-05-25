@@ -4,6 +4,12 @@ A Clojure wrapper around the Web3j technologies.
 
 ## Usage
 
+In your Leiningen `project.clj` dependencies:
+
+```clojure
+[web3clj "0.1.0"]
+```
+
 ### Key Web3j Libraries
 
 - https://github.com/web3j/web3j - the core web3j library.

@@ -1,4 +1,4 @@
-(defproject web3clj "0.1.0-SNAPSHOT"
+(defproject web3clj "0.1.0"
   :description " A Clojure wrapper around web3j"
   :url "https://github.com/cgore/web3clj"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
