@@ -7,7 +7,7 @@ A Clojure wrapper around the Web3j technologies.
 In your Leiningen `project.clj` dependencies:
 
 ```clojure
-[web3clj "0.1.0"]
+[com.cgore/web3clj "0.1.0"]
 ```
 
 ### Key Web3j Libraries
