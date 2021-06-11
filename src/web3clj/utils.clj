@@ -1,6 +1,7 @@
 (ns web3clj.utils
   (:import [java.math BigDecimal]
-           [org.web3j.utils Convert Convert$Unit]))
+           [org.web3j.utils Convert Convert$Unit]
+           (kotlin.jvm.functions Function0)))
 
 (def WEI    Convert$Unit/WEI)
 (def KWEI   Convert$Unit/KWEI)
@@ -54,3 +55,12 @@
 (defn wei->kether [kether-amount] (<-wei kether-amount KETHER))
 (defn wei->mether [mether-amount] (<-wei mether-amount METHER))
 (defn wei->gether [gether-amount] (<-wei gether-amount GETHER))
+
+
+(defn func0
+  "A wrapper around the Function0 interface"
+  [s]
+  (reify Function0
+    (invoke
+        [this]
+      s)))
